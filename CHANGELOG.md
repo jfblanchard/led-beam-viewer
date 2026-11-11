@@ -7,6 +7,8 @@ Development history leading up to the first public commit (2026-11-11).
 - Retook the README screenshot at desktop width: three-column layout with the
   2D/3D toggle visible
 - Added a Try it live section linking the deployed site
+- Added `VALIDATION.md` recording the pre-release verification pass (unit tests,
+  Python cross-check, 25-check Playwright pass, live-site checks)
 
 ## 2026-11-06
 
