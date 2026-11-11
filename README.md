@@ -1,6 +1,6 @@
 # LED Beam Viewer
 
-A simple viewer for looking at LED light distributions.  You can select from a generated beam model, or a real ies file with measured data.  The polar intensity curve in 2d or 3d, the pattern it throws on a wall are plotted , and the photometric calculations will be displayed
+A simple viewer for looking at LED light distributions.  You can select from a generated beam model, or a real ies file with measured data.  The polar intensity curve in 2d or 3d, the pattern it throws on a wall are plotted, and the photometric calculations will be displayed
 
 ![LED Beam Viewer showing a measured American Electric Lighting LED area light](docs/screenshot.png)
 
@@ -9,7 +9,7 @@ report), loaded from the bundled IES library.*
 
 ## What it does
 
-- **Polar intensity plot** in two orthogonal planes
+- **Polar intensity plot**: in two orthogonal planes
 - **Wall pattern**: a heat map of illuminance on a wall you can slide from
   0.2 m to 30 m away, with adjustable view width
 - **Numbers**: total lumens, peak candela, beam/field angles, center and
