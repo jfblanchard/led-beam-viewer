@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LED Beam Viewer</title>
+  <meta name="description" content="See an LED light distribution as a polar plot and as the pattern it casts on a wall and export candela tables and IES files.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <span class="brand">LED Beam Viewer</span>
+    <span class="sub">light distributions and wall patterns</span>
+    <span class="spacer"></span>
+    <div class="seg" role="group" aria-label="Units">
+      <button type="button" data-units="metric" class="on">Metric</button>
+      <button type="button" data-units="imperial">Feet</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="controls">
+      <section>
+        <h2>Source</h2>
+        <label class="field">Distribution
+          <select id="source"></select>
+        </label>
+        <div class="buttons">
+          <button type="button" id="ies-open">Import IES…</button>
+          <input type="file" id="ies-file" accept=".ies" multiple hidden>
+        </div>
+        <div id="params"></div>
+        <p class="hint" id="source-hint"></p>
+      </section>
+
+      <section>
+        <h2>Output</h2>
+        <div class="seg small" role="group" aria-label="Scale by">
+          <button type="button" data-scale="lumens" class="on">Lumens</button>
+          <button type="button" data-scale="peakCd">Peak candela</button>
+          <button type="button" data-scale="measured">As measured</button>
+        </div>
+        <label class="field"><span id="scale-label">Total lumens</span>
+          <input type="number" id="scale-value" min="0.1" step="any" value="200">
+        </label>
+      </section>
+
+      <section>
+        <h2>Wall</h2>
+        <label class="field">Distance <span class="val" id="dist-val"></span>
+          <input type="range" id="distance" min="0" max="1000" step="1">
+        </label>
+        <label class="field">View width <span class="val" id="zoom-val"></span>
+          <input type="range" id="zoom" min="25" max="300" step="5" value="100">
+        </label>
+      </section>
+
+      <section>
+        <h2>Export</h2>
+        <div class="buttons">
+          <button type="button" id="dl-ies">IES file</button>
+          <button type="button" id="dl-cd">Candela CSV</button>
+          <button type="button" id="dl-wall">Wall grid CSV</button>
+          <button type="button" id="dl-png">Plots PNG</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="views">
+      <figure class="card">
+        <figcaption>Intensity by angle <span class="legend"><i class="l1"></i>horizontal plane <i class="l2"></i>vertical plane</span>
+          <span class="seg small iview" role="group" aria-label="View"><button type="button" data-iview="2d" class="on">2D</button><button type="button" data-iview="3d">3D</button></span></figcaption>
+        <canvas id="polar" width="460" height="460"></canvas>
+        <div id="balloon" hidden></div>
+      </figure>
+      <figure class="card">
+        <figcaption>Pattern on the wall <span class="legend" id="wall-caption"></span></figcaption>
+        <canvas id="wall" width="460" height="400"></canvas>
+        <canvas id="section" width="460" height="150"></canvas>
+      </figure>
+    </section>
+
+    <aside class="results">
+      <section>
+        <h2>Numbers</h2>
+        <table class="kv" id="numbers"></table>
+      </section>
+      <section>
+        <h2>About the model</h2>
+        <p class="hint">The light source is treated as a point, which is accurate once the wall is several source-sizes away. Wall illuminance is E = I(θ) cos³θ / d², with the source aimed straight at the wall.</p>
+      </section>
+    </aside>
+  </main>
+
+  <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script>
+  <script src="lbv-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+*.log
+site/ies/vendor/
+.hermes/
+__pycache__/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+# internal working docs (CONVENTIONS.md section 7)
+notes/
